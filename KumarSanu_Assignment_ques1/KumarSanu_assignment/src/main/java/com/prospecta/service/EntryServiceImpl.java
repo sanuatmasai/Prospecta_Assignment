@@ -26,21 +26,6 @@ public class EntryServiceImpl implements EntryService{
 	public List<RequiredDataDTO> getRequiredListbyCategory(String category) throws EntryDataException {
 		AllAPIDataDTO allEntry = new RestTemplate().getForObject("https://api.publicapis.org/entries", AllAPIDataDTO.class);
 		
-//		System.out.println(allEntry);
-//		List<RequiredDataDTO> myList = new ArrayList<>();
-//		
-//		for(Entry e : allEntry.getEntries()) {
-//			if(e.getCategory().equals(category)) {
-//				myList.add(new RequiredDataDTO(e.getAPI(), e.getDescription()));
-//			}
-//		}
-//		
-//		if(myList.size() == 0) {
-//			throw new EntryDataException("No entry found with category " + category);
-//		}
-//		
-//		return myList;
-		
 		List<RequiredDataDTO> RequiredDataList = allEntry.getEntries().stream()
 																	  .filter(entry -> entry.getCategory().equals(category))
 																	  .map(entry -> new RequiredDataDTO(entry.getAPI(), entry.getDescription()))
